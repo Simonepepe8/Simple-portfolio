@@ -1,2 +1,3 @@
-test -f index.html style.css script.js
-
+test -f index.html
+test -f script.js
+test -f style.css
