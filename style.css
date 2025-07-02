@@ -1,0 +1,527 @@
+/* สีหลัก */
+:root {
+    --yellow-color: #FFD700; /* ทองเหลือง */
+    --black-color: #1a1a1a;
+    --white-color: #f0f0f0;
+}
+
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--black-color);
+    background-color: var(--white-color);
+    overflow-x: hidden; /* Prevent horizontal scroll due to menu */
+}
+
+h1, h2, h3 {
+    color: var(--black-color);
+    text-align: center;
+}
+
+a {
+    color: var(--black-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--yellow-color);
+}
+
+/* --- Pop-up Styles --- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: var(--yellow-color);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeInScale 0.4s ease-out forwards;
+    color: var(--black-color);
+}
+
+.popup-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--black-color);
+}
+
+.popup-content .questions p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    text-align: left;
+    padding-left: 20px;
+    position: relative;
+}
+
+.popup-content .questions p strong {
+    color: var(--black-color);
+}
+
+.popup-content .popup-note {
+    font-style: italic;
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: var(--black-color);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--black-color);
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg);
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* --- Hamburger Menu --- */
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 2em;
+    color: var(--black-color);
+    cursor: pointer;
+    z-index: 1001; /* Above popup overlay */
+    transition: color 0.3s ease;
+}
+
+.menu-icon:hover {
+    color: var(--yellow-color);
+}
+
+/* --- Fullscreen Navigation Menu --- */
+.fullscreen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-color); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Below popup, above content */
+    transform: translateX(-100%); /* Start off-screen */
+    transition: transform 0.4s ease-in-out;
+}
+
+.fullscreen-menu.active {
+    transform: translateX(0); /* Slide in */
+}
+
+.fullscreen-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.fullscreen-menu ul li {
+    margin: 30px 0;
+}
+
+.fullscreen-menu ul li a {
+    color: var(--white-color);
+    font-size: 2.5em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.fullscreen-menu ul li a:hover {
+    color: var(--yellow-color);
+}
+
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 3em;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+    color: var(--yellow-color);
+}
+
+/* --- Sections --- */
+section {
+    padding: 80px 5%;
+    min-height: 100vh; /* Ensure sections take full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative; /* For lightning patterns */
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: var(--yellow-color); /* 50% yellow */
+    color: var(--black-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* Space for menu icon */
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid var(--black-color);
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section h1 {
+    font-size: 4em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.hero-section p {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+/* About Section */
+.about-section {
+    background-color: var(--white-color); /* 35% white */
+    padding-bottom: 100px; /* Space for divider */
+}
+
+.about-section h2 {
+    font-size: 3em;
+    margin-bottom: 40px;
+}
+
+.about-section p {
+    max-width: 800px;
+    font-size: 1.1em;
+}
+
+/* Lightning Divider */
+.lightning-divider {
+    width: 100px;
+    height: 5px;
+    background-color: var(--black-color);
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+    animation: strikeEffect 1.5s infinite linear;
+}
+.lightning-divider::before,
+.lightning-divider::after {
+    content: '';
+    position: absolute;
+    background-color: var(--black-color);
+    transform: rotate(45deg);
+}
+
+.lightning-divider::before {
+    width: 50px;
+    height: 5px;
+    top: -10px;
+    left: 20px;
+}
+
+.lightning-divider::after {
+    width: 50px;
+    height: 5px;
+    bottom: -10px;
+    right: 20px;
+}
+
+@keyframes strikeEffect {
+    0% { transform: scaleX(0); opacity: 0; }
+    50% { transform: scaleX(1); opacity: 1; }
+    100% { transform: scaleX(0); opacity: 0; }
+}
+
+
+/* Works Section */
+.works-section {
+    background-color: var(--white-color); /* Primarily white, but can have yellow accents */
+    position: relative; /* For lightning patterns */
+}
+
+.works-section::before, .works-section::after {
+    content: '';
+    position: absolute;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.05; /* Subtle lightning */
+}
+
+.works-section::before {
+    width: 200px;
+    height: 200px;
+    top: 50px;
+    left: -50px;
+    transform: rotate(-30deg);
+}
+
+.works-section::after {
+    width: 150px;
+    height: 150px;
+    bottom: 50px;
+    right: -50px;
+    transform: rotate(60deg);
+}
+
+
+.works-section h2 {
+    font-size: 3em;
+    margin-bottom: 50px;
+}
+
+.work-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.work-item {
+    background-color: var(--white-color);
+    border: 3px solid var(--black-color); /* Black border for a sharp look */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.work-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    border-color: var(--yellow-color); /* Yellow border on hover */
+}
+
+.work-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 2px solid var(--black-color);
+}
+
+.work-item h3 {
+    margin: 20px 0 10px;
+    font-size: 1.8em;
+    color: var(--black-color);
+}
+
+.work-item p {
+    padding: 0 20px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+
+/* Services Section */
+.services-section {
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+}
+
+.services-section h2 {
+    font-size: 3em;
+    margin-bottom: 40px;
+    color: var(--black-color);
+}
+
+.services-section ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    width: 100%;
+}
+
+.services-section ul li {
+    background-color: var(--black-color);
+    color: var(--white-color);
+    padding: 20px 30px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.services-section ul li:hover {
+    background-color: var(--white-color);
+    color: var(--black-color);
+    transform: translateX(10px);
+}
+
+.services-section ul li .fas {
+    color: var(--yellow-color); /* Bolt icon yellow */
+    font-size: 1.5em;
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--black-color); /* 15% black */
+    color: var(--white-color);
+}
+
+.contact-section h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    color: var(--white-color);
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1.2em;
+}
+
+.contact-info p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white-color);
+}
+
+.contact-info .fas, .contact-info .fab {
+    color: var(--yellow-color);
+    font-size: 1.4em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 3em;
+    }
+
+    .hero-section p {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 2.5em;
+    }
+
+    .fullscreen-menu ul li a {
+        font-size: 2em;
+    }
+
+    .work-gallery {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+
+    .popup-content {
+        padding: 20px;
+    }
+    .popup-content h2 {
+        font-size: 1.8em;
+    }
+    .popup-content .questions p {
+        font-size: 1em;
+    }
+    .close-btn {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-section p {
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .fullscreen-menu ul li a {
+        font-size: 1.8em;
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+
+    .services-section ul li {
+        font-size: 1em;
+        padding: 15px 20px;
+    }
+}
