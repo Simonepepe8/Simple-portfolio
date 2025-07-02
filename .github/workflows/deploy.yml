@@ -1,4 +1,32 @@
 name: Deploy Portfolio to GitHub Pages
-test -f index.html
-test -f script.js
-test -f style.css
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  deploy: # ชื่อ Job ของคุณ
+    runs-on: ubuntu-latest
+
+steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+- name: Check for essential web files
+        run: |
+          echo "Verifying presence of critical web assets..."
+          test -f index.html && echo "✅ index.html found." || { echo "❌ Error: index.html not found! Deployment aborted."; exit 1; }
+          test -f script.js && echo "✅ script.js found." || { echo "❌ Error: script.js not found! Deployment aborted."; exit 1; }
+          test -f style.css && echo "✅ style.css found." || { echo "❌ Error: style.css not found! Deployment aborted."; exit 1; }
+          echo "All essential web files are present. Proceeding to deploy!"
+          
+- name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4 
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+          publish_dir: ./ 
+
+          publish_branch: gh-pages
+
+          commit_message: "Deploy: Automated portfolio update via GitHub Actions"
