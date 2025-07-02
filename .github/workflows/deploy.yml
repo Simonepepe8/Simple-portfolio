@@ -1,52 +1,41 @@
-# ชื่อของ Workflow นี้ ที่จะแสดงในหน้า GitHub Actions ของ Repository
-name: Deploy Portfolio to GitHub Pages
+name: Deploy Static Website to GitHub Pages
 
-# กำหนดเงื่อนไขการทำงานของ Workflow
 on:
   push:
     branches:
-      - main # Workflow จะทำงานเมื่อ push ไปยัง branch 'main' เท่านั้น
+      - main # Workflow จะทำงานเมื่อมีการ push ไปที่ branch 'main'
 
-# Jobs คือชุดของขั้นตอนที่จะถูกรัน
 jobs:
-  deploy: # ชื่อ Job ของคุณ (ผม Job ผม)
-    runs-on: ubuntu-latest # รันบนระบบปฏิบัติการ Ubuntu ล่าสุด
+  build-and-deploy:
+    runs-on: ubuntu-latest # ใช้ Ubuntu Runner ล่าสุด
 
     steps:
-      # Step 1: Checkout โค้ดจาก Repository
-      # ดึงโค้ดทั้งหมดของโปรเจกต์ลงมาใน Runner เพื่อให้เข้าถึงไฟล์ได้
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository # ดึงโค้ดจาก Repository
+      uses: actions/checkout@v4
 
-      # Step 2: ตรวจสอบไฟล์ที่จำเป็น (Basic Test)
-      # ขั้นตอนนี้จะเช็คว่าไฟล์ index.html, script.js, style.css มีอยู่ครบถ้วนหรือไม่
-      # ถ้าไฟล์ใดหายไป Workflow จะล้มเหลวเพื่อป้องกันการ Deploy ที่ไม่สมบูรณ์
-      - name: Check for essential web assets
-        run: |
-          echo "Verifying presence of critical web assets..."
-          test -f index.html && echo "✅ index.html found." || { echo "❌ Error: index.html not found! Deployment aborted."; exit 1; }
-          test -f script.js && echo "✅ script.js found." || { echo "❌ Error: script.js not found! Deployment aborted."; exit 1; }
-          test -f style.css && echo "✅ style.css found." || { echo "❌ Error: style.css not found! Deployment aborted."; exit 1; }
-          echo "All essential web assets are present. Proceeding to deploy!"
+    - name: Test (basic) - Check for essential files # ขั้นตอนการทดสอบพื้นฐาน
+      run: |
+        echo "Checking for essential project files..."
+        # ตรวจสอบว่าไฟล์ index.html มีอยู่
+        if [ ! -f "index.html" ]; then
+          echo "Error: index.html not found!"
+          exit 1
+        fi
+        # ตรวจสอบว่าไฟล์ style.css มีอยู่
+        if [ ! -f "style.css" ]; then
+          echo "Error: style.css not found!"
+          exit 1
+        fi
+        # ตรวจสอบว่าไฟล์ script.js มีอยู่ (ถ้าต้องการ)
+        if [ ! -f "script.js" ]; then
+          echo "Warning: main.js not found, but proceeding."
+          # exit 1 # uncomment this line if main.js is mandatory
+        fi
+        echo "Essential files found. Basic test passed."
 
-      # Step 3: Deploy ไปยัง GitHub Pages
-      # นี่คือส่วนที่ใช้ peaceiris/actions-gh-pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4 # ระบุ Action ที่ใช้สำหรับการ Deploy
-        with:
-          # `github_token`: Token ความปลอดภัยที่ GitHub สร้างให้อัตโนมัติ เพื่อให้ Action มีสิทธิ์ Push โค้ด
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          
-          # `publish_dir`: โฟลเดอร์ที่เก็บไฟล์เว็บไซต์ที่พร้อมจะ Deploy
-          # `./` หมายถึง root directory ของ Repository (ที่คุณเก็บ index.html, style.css)
-          publish_dir: ./ 
-          
-          # `publish_branch`: Branch ปลายทางที่จะ Push ไฟล์ไปให้ GitHub Pages ดึงไปแสดงผล
-          # โดยทั่วไปคือ 'gh-pages' (คุณต้องตั้งค่าใน GitHub Pages settings ด้วย)
-          publish_branch: gh-pages
-          
-          # `commit_message`: ข้อความ Commit ที่จะปรากฏใน Branch gh-pages
-          commit_message: "Deploy: Automated portfolio update via GitHub Actions"
-          
-          # แก้ไขจาก 'ture' เป็น 'true' เพื่อให้ถูกต้อง
-          force_orphan: true
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        force_orphan: true
