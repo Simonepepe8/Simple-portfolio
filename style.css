@@ -2,32 +2,35 @@
 :root {
     --yellow-color: #FFD700; /* ทองเหลือง */
     --black-color: #1a1a1a;
-    --white-color: #f0f0f0;
+    --white-color: #f0f0f0; /* สีขาวออกเทาเล็กน้อยเพื่อความสบายตา */
 }
 
 /* Base Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif; /* ใช้ Arial หรือ Sans-serif ทั่วไป */
     margin: 0;
     padding: 0;
     line-height: 1.6;
     color: var(--black-color);
     background-color: var(--white-color);
-    overflow-x: hidden; /* Prevent horizontal scroll due to menu */
+    overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอนที่ไม่ต้องการ */
+    scroll-behavior: smooth; /* ทำให้การเลื่อนไปยังส่วนต่างๆ ของหน้าเป็นไปอย่างนุ่มนวล */
 }
 
 h1, h2, h3 {
     color: var(--black-color);
     text-align: center;
+    font-weight: bold; /* ทำให้หัวข้อดูมีพลัง */
 }
 
 a {
     color: var(--black-color);
     text-decoration: none;
+    transition: color 0.3s ease; /* เพิ่ม transition สำหรับลิงก์ */
 }
 
 a:hover {
-    color: var(--yellow-color);
+    color: var(--yellow-color); /* เปลี่ยนเป็นสีเหลืองเมื่อเมาส์ชี้ */
 }
 
 /* --- Pop-up Styles --- */
@@ -37,11 +40,11 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8); /* พื้นหลังมืดลงเล็กน้อย */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1000; /* ให้ Pop-up อยู่บนสุด */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -58,22 +61,23 @@ a:hover {
     border-radius: 10px;
     text-align: center;
     position: relative;
-    max-width: 600px;
+    max-width: 650px; /* เพิ่มขนาด Pop-up เล็กน้อย */
     width: 90%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* เงาที่ชัดเจนขึ้น */
     animation: fadeInScale 0.4s ease-out forwards;
     color: var(--black-color);
+    border: 3px solid var(--black-color); /* เพิ่มกรอบสีดำ */
 }
 
 .popup-content h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2.2em; /* เพิ่มขนาดหัวข้อ Pop-up */
+    margin-bottom: 25px;
     color: var(--black-color);
 }
 
 .popup-content .questions p {
-    margin-bottom: 15px;
-    font-size: 1.1em;
+    margin-bottom: 18px; /* เพิ่มระยะห่างระหว่างคำถาม */
+    font-size: 1.15em; /* เพิ่มขนาดตัวอักษรคำถาม */
     text-align: left;
     padding-left: 20px;
     position: relative;
@@ -85,9 +89,10 @@ a:hover {
 
 .popup-content .popup-note {
     font-style: italic;
-    margin-top: 25px;
-    font-size: 0.9em;
+    margin-top: 30px;
+    font-size: 1em;
     color: var(--black-color);
+    font-weight: bold;
 }
 
 .close-btn {
@@ -96,21 +101,22 @@ a:hover {
     right: 15px;
     background: none;
     border: none;
-    font-size: 2em;
+    font-size: 2.5em; /* ทำให้ปุ่มปิดใหญ่ขึ้น */
     color: var(--black-color);
     cursor: pointer;
     line-height: 1;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .close-btn:hover {
     transform: rotate(90deg);
+    color: #6a0dad; /* สีม่วงเข้มเพื่อให้ดูตัดกับเหลืองและดำ */
 }
 
 @keyframes fadeInScale {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.8); /* เริ่มจากขนาดเล็กกว่าเดิมเล็กน้อย */
     }
     to {
         opacity: 1;
@@ -122,12 +128,12 @@ a:hover {
 /* --- Hamburger Menu --- */
 .menu-icon {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 2em;
+    top: 25px; /* เลื่อนลงมาเล็กน้อย */
+    left: 25px; /* เลื่อนเข้ามาเล็กน้อย */
+    font-size: 2.2em; /* ไอคอนใหญ่ขึ้น */
     color: var(--black-color);
     cursor: pointer;
-    z-index: 1001; /* Above popup overlay */
+    z-index: 1001; /* อยู่เหนือ Pop-up */
     transition: color 0.3s ease;
 }
 
@@ -142,17 +148,17 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--black-color); /* Dark overlay */
+    background-color: var(--black-color); /* พื้นหลังดำทึบ */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999; /* Below popup, above content */
-    transform: translateX(-100%); /* Start off-screen */
+    z-index: 999; /* อยู่ใต้ Pop-up, เหนือเนื้อหา */
+    transform: translateX(-100%); /* ซ่อนอยู่ด้านซ้าย */
     transition: transform 0.4s ease-in-out;
 }
 
 .fullscreen-menu.active {
-    transform: translateX(0); /* Slide in */
+    transform: translateX(0); /* เลื่อนเข้ามา */
 }
 
 .fullscreen-menu ul {
@@ -163,30 +169,31 @@ a:hover {
 }
 
 .fullscreen-menu ul li {
-    margin: 30px 0;
+    margin: 35px 0; /* เพิ่มระยะห่างระหว่างเมนู */
 }
 
 .fullscreen-menu ul li a {
     color: var(--white-color);
-    font-size: 2.5em;
+    font-size: 2.8em; /* เมนูใหญ่ขึ้น */
     font-weight: bold;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .fullscreen-menu ul li a:hover {
     color: var(--yellow-color);
+    text-shadow: 0 0 15px var(--yellow-color), 0 0 30px var(--yellow-color); /* เพิ่มเงาเรืองแสง */
 }
 
 .close-menu-btn {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 25px;
+    left: 25px;
     background: none;
     border: none;
-    font-size: 3em;
+    font-size: 3.5em; /* ปุ่มปิดเมนูใหญ่ขึ้น */
     color: var(--white-color);
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .close-menu-btn:hover {
@@ -196,14 +203,15 @@ a:hover {
 
 /* --- Sections --- */
 section {
-    padding: 80px 5%;
-    min-height: 100vh; /* Ensure sections take full viewport height */
+    padding: 100px 5%; /* เพิ่ม padding บน-ล่าง */
+    min-height: 100vh; /* ทำให้แต่ละ section เต็มหน้าจออย่างน้อย 100% */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative; /* For lightning patterns */
+    position: relative;
+    overflow: hidden; /* ป้องกันลวดลายสายฟ้าเลื่อนออกนอก section */
 }
 
 /* Hero Section */
@@ -214,314 +222,525 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 100px; /* Space for menu icon */
+    padding-top: 120px; /* เว้นที่สำหรับเมนู */
+    position: relative;
+    /* เพิ่มลวดลายสายฟ้าแบบ Subtle */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: repeat;
+    background-size: 150px;
+    opacity: 0.1; /* โปร่งแสงมาก */
+    animation: lightningBackground 30s linear infinite; /* เคลื่อนไหวช้าๆ */
+}
+/* Keyframes for subtle background lightning movement */
+@keyframes lightningBackground {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
+    z-index: 1; /* ให้เนื้อหาอยู่บนลวดลาย */
 }
 
 .profile-pic {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 220px; /* รูปใหญ่ขึ้น */
+    height: 220px;
     object-fit: cover;
-    border: 5px solid var(--black-color);
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 7px solid var(--black-color); /* กรอบหนาขึ้น */
+    margin-bottom: 25px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* เงาเข้มขึ้น */
 }
 
 .hero-section h1 {
-    font-size: 4em;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    font-size: 4.5em; /* ชื่อใหญ่และโดดเด่น */
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 7px rgba(0,0,0,0.3);
 }
 
 .hero-section p {
-    font-size: 1.5em;
-    font-weight: 300;
+    font-size: 1.7em; /* ข้อความตำแหน่งใหญ่ขึ้น */
+    font-weight: 400;
+    margin-bottom: 15px;
 }
+
+.hero-tagline {
+    font-size: 1.3em !important; /* Tagline ให้ดูเด่นขึ้น */
+    font-style: italic;
+    font-weight: 500;
+    color: #333;
+}
+
 
 /* About Section */
 .about-section {
     background-color: var(--white-color); /* 35% white */
-    padding-bottom: 100px; /* Space for divider */
+    padding-bottom: 120px; /* เผื่อที่สำหรับ divider */
 }
 
 .about-section h2 {
-    font-size: 3em;
+    font-size: 3.5em;
     margin-bottom: 40px;
+    color: var(--black-color);
 }
 
 .about-section p {
-    max-width: 800px;
-    font-size: 1.1em;
+    max-width: 900px;
+    font-size: 1.2em; /* ตัวอักษรใหญ่ขึ้นเล็กน้อย */
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #444;
+}
+.about-section p strong {
+    color: var(--black-color);
 }
 
-/* Lightning Divider */
+
+/* Lightning Divider (ปรับแต่งให้ดูเหมือนสายฟ้ามากขึ้น) */
 .lightning-divider {
-    width: 100px;
-    height: 5px;
+    width: 150px; /* กว้างขึ้น */
+    height: 6px; /* หนาขึ้น */
     background-color: var(--black-color);
-    margin: 50px auto;
+    margin: 60px auto; /* เพิ่มระยะห่าง */
     position: relative;
-    overflow: hidden;
-    animation: strikeEffect 1.5s infinite linear;
+    overflow: visible; /* ให้สายฟ้าออกมานอกกรอบ */
+    animation: strikeEffect 2s infinite ease-in-out; /* ปรับความเร็วและ easing */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* เพิ่มเงาให้ดูมีมิติ */
+    border-radius: 3px;
 }
 .lightning-divider::before,
 .lightning-divider::after {
     content: '';
     position: absolute;
     background-color: var(--black-color);
-    transform: rotate(45deg);
+    transform-origin: top left; /* กำหนดจุดหมุน */
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .lightning-divider::before {
-    width: 50px;
-    height: 5px;
-    top: -10px;
-    left: 20px;
+    width: 80px; /* กว้างขึ้น */
+    height: 6px;
+    top: -15px; /* เลื่อนขึ้น */
+    left: 10px;
+    transform: rotate(-45deg); /* ปรับองศา */
 }
 
 .lightning-divider::after {
-    width: 50px;
-    height: 5px;
-    bottom: -10px;
-    right: 20px;
+    width: 80px; /* กว้างขึ้น */
+    height: 6px;
+    bottom: -15px; /* เลื่อนลง */
+    right: 10px;
+    transform: rotate(45deg); /* ปรับองศา */
 }
 
 @keyframes strikeEffect {
-    0% { transform: scaleX(0); opacity: 0; }
+    0%, 100% { transform: scaleX(0); opacity: 0; }
+    20% { transform: scaleX(0.5); opacity: 0.5; }
     50% { transform: scaleX(1); opacity: 1; }
-    100% { transform: scaleX(0); opacity: 0; }
+    80% { transform: scaleX(0.5); opacity: 0.5; }
 }
 
 
 /* Works Section */
 .works-section {
-    background-color: var(--white-color); /* Primarily white, but can have yellow accents */
-    position: relative; /* For lightning patterns */
+    background-color: var(--white-color);
+    position: relative;
+    z-index: 1; /* เพื่อให้ลวดลายข้างหลังไม่บังเนื้อหา */
+    border-top: 5px solid var(--black-color); /* เพิ่มเส้นแบ่ง */
+    border-bottom: 5px solid var(--black-color); /* เพิ่มเส้นแบ่ง */
+    padding: 120px 5%; /* เพิ่ม padding */
 }
 
+/* Lightning patterns for works section background */
 .works-section::before, .works-section::after {
     content: '';
     position: absolute;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
     background-repeat: no-repeat;
     background-size: contain;
-    opacity: 0.05; /* Subtle lightning */
+    opacity: 0.07; /* เพิ่มความชัดเจนของลวดลายเล็กน้อย */
+    z-index: -1; /* อยู่ข้างหลังเนื้อหา */
 }
 
 .works-section::before {
-    width: 200px;
-    height: 200px;
-    top: 50px;
-    left: -50px;
-    transform: rotate(-30deg);
+    width: 250px; /* ใหญ่ขึ้น */
+    height: 250px;
+    top: 30px;
+    left: -80px; /* เลื่อนออกไปอีก */
+    transform: rotate(-45deg); /* ปรับองศา */
 }
 
 .works-section::after {
-    width: 150px;
-    height: 150px;
-    bottom: 50px;
-    right: -50px;
-    transform: rotate(60deg);
+    width: 200px; /* ใหญ่ขึ้น */
+    height: 200px;
+    bottom: 30px;
+    right: -80px; /* เลื่อนออกไปอีก */
+    transform: rotate(70deg); /* ปรับองศา */
 }
 
-
 .works-section h2 {
-    font-size: 3em;
-    margin-bottom: 50px;
+    font-size: 3.5em;
+    margin-bottom: 60px; /* เพิ่มระยะห่าง */
 }
 
 .work-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* ขนาดขั้นต่ำของแต่ละ item ใหญ่ขึ้น */
+    gap: 50px; /* เพิ่มระยะห่างระหว่างงาน */
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .work-item {
     background-color: var(--white-color);
-    border: 3px solid var(--black-color); /* Black border for a sharp look */
-    border-radius: 8px;
+    border: 4px solid var(--black-color); /* กรอบหนาขึ้น */
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* เงาเข้มขึ้น */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
+    display: flex; /* จัดเรียงเนื้อหาภายใน */
+    flex-direction: column;
 }
 
 .work-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-    border-color: var(--yellow-color); /* Yellow border on hover */
+    transform: translateY(-15px); /* เลื่อนขึ้นสูงขึ้น */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-color: var(--yellow-color); /* เปลี่ยนเป็นสีเหลือง */
 }
 
 .work-item img {
     width: 100%;
-    height: 200px;
+    height: 220px; /* รูปใหญ่ขึ้น */
     object-fit: cover;
     display: block;
-    border-bottom: 2px solid var(--black-color);
+    border-bottom: 3px solid var(--black-color); /* เส้นแบ่งหนาขึ้น */
 }
 
 .work-item h3 {
-    margin: 20px 0 10px;
-    font-size: 1.8em;
+    margin: 25px 0 12px; /* เพิ่มระยะห่าง */
+    font-size: 2em; /* หัวข้อใหญ่ขึ้น */
     color: var(--black-color);
 }
 
 .work-item p {
-    padding: 0 20px;
-    font-size: 0.95em;
+    padding: 0 25px; /* เพิ่ม padding */
+    font-size: 1.05em; /* ตัวอักษรใหญ่ขึ้นเล็กน้อย */
     color: #555;
+    flex-grow: 1; /* ทำให้ p ยืดหยุ่นเต็มพื้นที่ */
 }
 
+.section-note {
+    margin-top: 60px;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #666;
+}
 
 /* Services Section */
 .services-section {
     background-color: var(--yellow-color);
     color: var(--black-color);
+    border-top: 5px solid var(--black-color); /* เพิ่มเส้นแบ่ง */
+    border-bottom: 5px solid var(--black-color); /* เพิ่มเส้นแบ่ง */
+    position: relative;
+    overflow: hidden; /* เพื่อควบคุม pseudo-elements */
 }
 
+/* Lightning pattern for services section */
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20%;
+    width: 150%;
+    height: 150%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: 400px; /* ใหญ่ขึ้น */
+    opacity: 0.1; /* โปร่งแสง */
+    transform: rotate(20deg) translateY(-50%);
+    animation: pulseLightning 5s infinite ease-in-out alternate; /* เพิ่ม animation */
+}
+
+@keyframes pulseLightning {
+    0% { transform: rotate(20deg) translateY(-50%) scale(0.95); opacity: 0.08; }
+    100% { transform: rotate(20deg) translateY(-50%) scale(1.05); opacity: 0.12; }
+}
+
+
 .services-section h2 {
-    font-size: 3em;
-    margin-bottom: 40px;
+    font-size: 3.5em;
+    margin-bottom: 50px;
     color: var(--black-color);
+    z-index: 1; /* ให้หัวข้ออยู่บนลวดลาย */
 }
 
 .services-section ul {
     list-style: none;
     padding: 0;
-    max-width: 600px;
+    max-width: 700px; /* กว้างขึ้น */
     width: 100%;
+    z-index: 1; /* ให้รายการอยู่บนลวดลาย */
 }
 
 .services-section ul li {
     background-color: var(--black-color);
     color: var(--white-color);
-    padding: 20px 30px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    font-size: 1.2em;
+    padding: 25px 35px; /* เพิ่ม padding */
+    margin-bottom: 20px; /* เพิ่มระยะห่าง */
+    border-radius: 10px;
+    font-size: 1.3em; /* ตัวอักษรใหญ่ขึ้น */
     display: flex;
     align-items: center;
-    gap: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    gap: 20px; /* เพิ่มระยะห่างระหว่างไอคอนและข้อความ */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* เงาเข้มขึ้น */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 2px solid var(--black-color); /* กรอบเริ่มต้น */
 }
 
 .services-section ul li:hover {
     background-color: var(--white-color);
     color: var(--black-color);
-    transform: translateX(10px);
+    transform: translateX(15px) scale(1.02); /* เลื่อนและขยายเล็กน้อย */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    border-color: var(--yellow-color); /* กรอบสีเหลืองเมื่อ hover */
 }
 
 .services-section ul li .fas {
-    color: var(--yellow-color); /* Bolt icon yellow */
-    font-size: 1.5em;
+    color: var(--yellow-color);
+    font-size: 1.8em; /* ไอคอนใหญ่ขึ้น */
+    filter: drop-shadow(0 0 5px var(--yellow-color)); /* เพิ่มแสงเรืองรองให้ไอคอน */
 }
+
 
 /* Contact Section */
 .contact-section {
     background-color: var(--black-color); /* 15% black */
     color: var(--white-color);
+    padding-bottom: 50px; /* สำหรับ footer-note */
+    position: relative;
+    overflow: hidden;
 }
 
+/* Adding subtle lightning bolt pattern */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD700" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.08; /* Subtle yellow lightning */
+    transform: rotate(-25deg);
+    z-index: 0;
+}
+.contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: -10%;
+    width: 250px;
+    height: 250px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD700" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.06; /* Even more subtle */
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+
 .contact-section h2 {
-    font-size: 3em;
-    margin-bottom: 30px;
+    font-size: 3.5em;
+    margin-bottom: 40px;
     color: var(--white-color);
+    z-index: 1;
 }
 
 .contact-section p {
-    font-size: 1.1em;
-    margin-bottom: 30px;
-    max-width: 700px;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    max-width: 800px;
+    color: var(--white-color);
+    z-index: 1;
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    font-size: 1.2em;
+    gap: 20px; /* เพิ่มระยะห่าง */
+    font-size: 1.3em; /* ตัวอักษรใหญ่ขึ้น */
+    z-index: 1;
 }
 
 .contact-info p {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px; /* เพิ่มระยะห่าง */
     color: var(--white-color);
+    transition: color 0.3s ease;
+}
+
+.contact-info p:hover {
+    color: var(--yellow-color); /* เปลี่ยนสีเมื่อ hover */
+}
+
+.contact-info p a {
+    color: var(--white-color); /* ลิงก์เริ่มต้น */
+    transition: color 0.3s ease;
+}
+
+.contact-info p a:hover {
+    color: var(--yellow-color); /* ลิงก์เปลี่ยนสีเมื่อ hover */
+    text-decoration: underline;
 }
 
 .contact-info .fas, .contact-info .fab {
     color: var(--yellow-color);
-    font-size: 1.4em;
+    font-size: 1.6em; /* ไอคอนใหญ่ขึ้น */
+    filter: drop-shadow(0 0 5px var(--yellow-color));
 }
 
+.footer-note {
+    margin-top: 60px;
+    font-size: 0.9em;
+    color: #aaa;
+    z-index: 1;
+}
+
+
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .hero-section h1 {
+        font-size: 4em;
+    }
+    .hero-section p {
+        font-size: 1.5em;
+    }
+    h2 {
         font-size: 3em;
     }
-
-    .hero-section p {
-        font-size: 1.2em;
-    }
-
-    h2 {
-        font-size: 2.5em;
-    }
-
-    .fullscreen-menu ul li a {
-        font-size: 2em;
-    }
-
     .work-gallery {
-        grid-template-columns: 1fr; /* Single column on small screens */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+    .services-section ul li {
+        font-size: 1.2em;
+        padding: 20px 25px;
+    }
+}
 
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 3.5em;
+    }
+    .hero-section p {
+        font-size: 1.3em;
+    }
+    .hero-tagline {
+        font-size: 1.1em !important;
+    }
+    h2 {
+        font-size: 2.8em;
+    }
+    .fullscreen-menu ul li a {
+        font-size: 2.2em;
+    }
+    .close-menu-btn {
+        font-size: 3em;
+    }
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+    }
     .popup-content {
-        padding: 20px;
+        padding: 25px;
+        max-width: 500px;
     }
     .popup-content h2 {
-        font-size: 1.8em;
+        font-size: 2em;
     }
     .popup-content .questions p {
-        font-size: 1em;
+        font-size: 1.05em;
     }
     .close-btn {
-        font-size: 1.8em;
+        font-size: 2em;
+    }
+    .work-gallery {
+        grid-template-columns: 1fr; /* แถวเดียวสำหรับหน้าจอเล็ก */
+        gap: 30px;
+    }
+    .about-section p, .works-section p, .contact-section p {
+        font-size: 1.1em;
     }
 }
 
 @media (max-width: 480px) {
+    section {
+        padding: 80px 3%;
+    }
     .hero-section h1 {
-        font-size: 2.5em;
+        font-size: 2.8em;
     }
-
     .hero-section p {
-        font-size: 1em;
+        font-size: 1.1em;
     }
-
+    .hero-tagline {
+        font-size: 0.9em !important;
+    }
     h2 {
-        font-size: 2em;
+        font-size: 2.2em;
     }
-
     .fullscreen-menu ul li a {
         font-size: 1.8em;
     }
-
-    .profile-pic {
-        width: 150px;
-        height: 150px;
+    .close-menu-btn {
+        font-size: 2.5em;
     }
-
+    .menu-icon {
+        font-size: 2em;
+        top: 15px;
+        left: 15px;
+    }
+    .close-btn {
+        font-size: 1.8em;
+        top: 10px;
+        right: 10px;
+    }
+    .popup-content {
+        padding: 15px;
+    }
+    .popup-content h2 {
+        font-size: 1.6em;
+    }
+    .popup-content .questions p {
+        font-size: 0.95em;
+        margin-bottom: 10px;
+    }
+    .profile-pic {
+        width: 140px;
+        height: 140px;
+        border-width: 4px;
+    }
+    .about-section p, .works-section p, .contact-section p {
+        font-size: 1em;
+    }
     .services-section ul li {
         font-size: 1em;
         padding: 15px 20px;
+        gap: 10px;
+    }
+    .services-section ul li .fas {
+        font-size: 1.5em;
+    }
+    .contact-info p {
+        font-size: 1.1em;
     }
 }
