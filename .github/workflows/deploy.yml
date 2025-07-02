@@ -28,5 +28,5 @@ steps:
           publish_dir: ./ 
 
           publish_branch: gh-pages
-
           commit_message: "Deploy: Automated portfolio update via GitHub Actions"
+          force_orphan: ture
