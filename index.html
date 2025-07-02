@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Your Name</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="popup-overlay" id="questionPopup">
+        <div class="popup-content">
+            <button class="close-btn" id="closePopup">&times;</button>
+            <h2>มาทำความรู้จักกันหน่อย!</h2>
+            <div class="questions">
+                <p><strong>1. ถ้าคุณคือกระแสไฟฟ้า คุณจะเชื่อมต่อกับโปรเจกต์ไหนของผมก่อน?</strong></p>
+                <p><strong>2. จินตนาการว่าเรากำลังสร้างนวัตกรรมใหม่ คุณอยากให้ผมเติม 'พลังงาน' ด้านใดให้ทีมของคุณมากที่สุด?</strong></p>
+                <p><strong>3. ในโลกที่ข้อมูลเดินทางด้วยความเร็วแสง คุณอยากให้ผลงานชิ้นไหนของผม 'สว่างวาบ' ที่สุดในใจคุณ?</strong></p>
+                <p><strong>4. หาก Portfolio นี้คือสถานีชาร์จแบตเตอรี่ คุณอยากให้ผมเติม 'ไอเดีย' ให้ธุรกิจของคุณเต็มกี่เปอร์เซ็นต์?</strong></p>
+                <p><strong>5. ถ้าการจ้างงานคือการ 'จุดประกาย' คุณพร้อมที่จะให้ผมเริ่มต้นโปรเจกต์ของคุณด้วยประกายไฟแรกเมื่อไหร่?</strong></p>
+            </div>
+            <p class="popup-note">ลองคิดคำตอบในใจดูนะ!</p>
+        </div>
+    </div>
+
+    <div class="menu-icon" id="menuIcon">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <nav class="fullscreen-menu" id="fullscreenMenu">
+        <button class="close-menu-btn" id="closeMenu">&times;</button>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#works">My Works</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero-section" id="hero">
+            <div class="hero-content">
+                <img src="https://via.placeholder.com/150" alt="Your Profile Picture" class="profile-pic">
+                <h1>ชื่อของคุณ</h1>
+                <p>ตำแหน่ง / ความสามารถพิเศษของคุณ</p>
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <h2>เกี่ยวกับฉัน</h2>
+            <p>สวัสดีครับ/ค่ะ! ผม/ดิฉันชื่อ [ชื่อของคุณ] เป็น [ตำแหน่งของคุณ] ที่หลงใหลในการสร้างสรรค์สิ่งใหม่ๆ และแก้ไขปัญหาด้วยความคิดสร้างสรรค์...</p>
+            <div class="lightning-divider"></div>
+        </section>
+
+        <section class="works-section" id="works">
+            <h2>ผลงานของฉัน</h2>
+            <div class="work-gallery">
+                <div class="work-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Work 1">
+                    <h3>โปรเจกต์ที่ 1</h3>
+                    <p>คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้...</p>
+                </div>
+                <div class="work-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Work 2">
+                    <h3>โปรเจกต์ที่ 2</h3>
+                    <p>คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้...</p>
+                </div>
+                <div class="work-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Work 3">
+                    <h3>โปรเจกต์ที่ 3</h3>
+                    <p>คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section" id="services">
+            <h2>บริการ</h2>
+            <ul>
+                <li><i class="fas fa-bolt"></i> ออกแบบเว็บไซต์</li>
+                <li><i class="fas fa-bolt"></i> พัฒนาแอปพลิเคชัน</li>
+                <li><i class="fas fa-bolt"></i> การสร้างแบรนด์</li>
+                <li><i class="fas fa-bolt"></i> ให้คำปรึกษาด้านดิจิทัล</li>
+            </ul>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <h2>ติดต่อฉัน</h2>
+            <p>ยินดีที่ได้รู้จัก! หากคุณมีโปรเจกต์ที่น่าสนใจ หรือแค่อยากทักทาย อย่าลังเลที่จะติดต่อมา!</p>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> email@example.com</p>
+                <p><i class="fas fa-phone"></i> 08x-xxx-xxxx</p>
+                <p><i class="fab fa-linkedin"></i> LinkedIn Profile</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
