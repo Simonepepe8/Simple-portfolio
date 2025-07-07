@@ -227,7 +227,7 @@ section {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
     background-repeat: repeat; /* ทำซ้ำลวดลาย */
     background-size: 150px; /* ขนาดของลวดลาย */
-    opacity: 0.9; /* ความโปร่งแสงของลวดลาย */ 
+    opacity: 0.1; /* ความโปร่งแสงของลวดลาย */ 
     animation: lightningBackground 30s linear infinite; /* Animation เคลื่อนไหวช้าๆ */
 }
 /* Keyframes สำหรับการเคลื่อนไหวพื้นหลัง */
@@ -238,7 +238,8 @@ section {
 
 .hero-content {
     max-width: 900px;
-    z-index: -1; /* ให้เนื้อหาอยู่บนลวดลายพื้นหลัง */
+    opacity: 1;
+    z-index: 10; /* ให้เนื้อหาอยู่บนลวดลายพื้นหลัง */
 }
 
 .profile-pic {
