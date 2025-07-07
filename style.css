@@ -1,0 +1,744 @@
+/* สีหลักที่ใช้ในเว็บไซต์ */
+:root {
+    --yellow-color: #FFD700; /* สีเหลืองทอง (50%) */
+    --black-color: #1a1a1a;  /* สีดำ (15%) */
+    --white-color: #f0f0f0;  /* สีขาวออกเทาเล็กน้อย (35%) เพื่อความสบายตา */
+}
+
+/* Base Styles: การตั้งค่าพื้นฐานสำหรับ Body และองค์ประกอบทั่วไป */
+body {
+    font-family: 'Arial', sans-serif; /* ใช้ฟอนต์ Arial หรือ Sans-serif ทั่วไป */
+    margin: 0; /* ลบ margin เริ่มต้นของ body */
+    padding: 0; /* ลบ padding เริ่มต้นของ body */
+    line-height: 1.6; /* กำหนดระยะห่างระหว่างบรรทัด */
+    color: var(--black-color); /* กำหนดสีข้อความเริ่มต้น */
+    background-color: var(--white-color); /* กำหนดสีพื้นหลังเริ่มต้น */
+    overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอนที่ไม่ต้องการ */
+    scroll-behavior: smooth; /* ทำให้การเลื่อนไปยังส่วนต่างๆ ของหน้าเป็นไปอย่างนุ่มนวล */
+}
+
+/* สไตล์สำหรับหัวข้อต่างๆ */
+h1, h2, h3 {
+    color: var(--black-color); /* สีข้อความหัวข้อ */
+    text-align: center; /* จัดกลางหัวข้อ */
+    font-weight: bold; /* ทำให้หัวข้อดูมีพลัง */
+}
+
+/* สไตล์สำหรับลิงก์ */
+a {
+    color: var(--black-color); /* สีลิงก์เริ่มต้น */
+    text-decoration: none; /* ไม่มีขีดเส้นใต้ */
+    transition: color 0.3s ease; /* เพิ่ม transition เมื่อสีเปลี่ยน */
+}
+
+a:hover {
+    color: var(--yellow-color); /* เปลี่ยนเป็นสีเหลืองเมื่อเมาส์ชี้ */
+}
+
+/* --- Pop-up Styles: สไตล์สำหรับ Pop-up คำถาม --- */
+.popup-overlay {
+    position: fixed; /* ตำแหน่งคงที่บนหน้าจอ */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* พื้นหลังสีดำโปร่งแสง 80% */
+    display: flex; /* ใช้ Flexbox ในการจัดวาง */
+    justify-content: center; /* จัดกลางแนวนอน */
+    align-items: center; /* จัดกลางแนวตั้ง */
+    z-index: 1000; /* ให้ Pop-up อยู่บนสุด */
+    opacity: 0; /* เริ่มต้นด้วยความโปร่งใส 0 */
+    visibility: hidden; /* ซ่อน Pop-up ไว้ก่อน */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* เพิ่ม transition เมื่อแสดง/ซ่อน */
+}
+
+.popup-overlay.active {
+    opacity: 1; /* แสดง Pop-up ด้วยความโปร่งใส 1 */
+    visibility: visible; /* ทำให้มองเห็น Pop-up */
+}
+
+.popup-content {
+    background: var(--yellow-color); /* พื้นหลัง Pop-up เป็นสีเหลือง */
+    padding: 30px; /* Padding ภายใน Pop-up */
+    border-radius: 10px; /* มุมโค้งมน */
+    text-align: center; /* จัดกลางข้อความ */
+    position: relative; /* สำหรับตำแหน่งปุ่มปิด */
+    max-width: 650px; /* กำหนดความกว้างสูงสุด */
+    width: 90%; /* กำหนดความกว้างเป็น 90% ของพื้นที่ */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* เงา Pop-up */
+    animation: fadeInScale 0.4s ease-out forwards; /* Animation เมื่อ Pop-up ปรากฏ */
+    color: var(--black-color); /* สีข้อความภายใน Pop-up */
+    border: 3px solid var(--black-color); /* เพิ่มกรอบสีดำ */
+}
+
+.popup-content h2 {
+    font-size: 2.2em; /* ขนาดหัวข้อ Pop-up */
+    margin-bottom: 25px;
+    color: var(--black-color);
+}
+
+.popup-content .questions p {
+    margin-bottom: 18px; /* ระยะห่างระหว่างคำถาม */
+    font-size: 1.15em; /* ขนาดตัวอักษรคำถาม */
+    text-align: left; /* จัดชิดซ้าย */
+    padding-left: 20px; /* เยื้องจากด้านซ้าย */
+    position: relative;
+}
+
+.popup-content .questions p strong {
+    color: var(--black-color);
+}
+
+.popup-content .popup-note {
+    font-style: italic; /* ตัวเอียง */
+    margin-top: 30px;
+    font-size: 1em;
+    color: var(--black-color);
+    font-weight: bold;
+}
+
+.close-btn {
+    position: absolute; /* ตำแหน่งสัมบูรณ์ */
+    top: 15px; /* ห่างจากขอบบน 15px */
+    right: 15px; /* ห่างจากขอบขวา 15px */
+    background: none; /* ไม่มีพื้นหลัง */
+    border: none; /* ไม่มีเส้นขอบ */
+    font-size: 2.5em; /* ขนาดปุ่มปิด */
+    color: var(--black-color); /* สีปุ่มปิด */
+    cursor: pointer; /* เปลี่ยน Cursor เป็นรูปมือ */
+    line-height: 1;
+    transition: transform 0.2s ease, color 0.2s ease; /* เพิ่ม transition เมื่อมีการ hover */
+}
+
+.close-btn:hover {
+    transform: rotate(90deg); /* หมุน 90 องศาเมื่อ hover */
+    color: #6a0dad; /* เปลี่ยนสีเป็นม่วงเข้ม */
+}
+
+/* Keyframe Animation สำหรับ Pop-up */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8); /* เริ่มจากขนาดเล็กกว่าปกติ */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1); /* ขยายเป็นขนาดปกติ */
+    }
+}
+
+
+/* --- Hamburger Menu: สไตล์สำหรับไอคอนเมนู --- */
+.menu-icon {
+    position: fixed; /* ตำแหน่งคงที่ */
+    top: 25px; /* ห่างจากขอบบน */
+    left: 25px; /* ห่างจากขอบซ้าย */
+    font-size: 2.2em; /* ขนาดไอคอน */
+    color: var(--black-color); /* สีไอคอน */
+    cursor: pointer; /* เปลี่ยน Cursor เป็นรูปมือ */
+    z-index: 1001; /* อยู่เหนือ Pop-up */
+    transition: color 0.3s ease; /* เพิ่ม transition เมื่อสีเปลี่ยน */
+}
+
+.menu-icon:hover {
+    color: var(--yellow-color); /* เปลี่ยนเป็นสีเหลืองเมื่อ hover */
+}
+
+/* --- Fullscreen Navigation Menu: สไตล์สำหรับเมนูเต็มหน้าจอ --- */
+.fullscreen-menu {
+    position: fixed; /* ตำแหน่งคงที่ */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-color); /* พื้นหลังดำทึบ */
+    display: flex; /* ใช้ Flexbox ในการจัดวาง */
+    justify-content: center; /* จัดกลางแนวนอน */
+    align-items: center; /* จัดกลางแนวตั้ง */
+    z-index: 999; /* อยู่ใต้ Pop-up, เหนือเนื้อหา */
+    transform: translateX(-100%); /* ซ่อนเมนูไว้ด้านซ้ายนอกจอ */
+    transition: transform 0.4s ease-in-out; /* เพิ่ม transition เมื่อเลื่อนเข้า/ออก */
+}
+
+.fullscreen-menu.active {
+    transform: translateX(0); /* เลื่อนเมนูเข้ามาในจอ */
+}
+
+.fullscreen-menu ul {
+    list-style: none; /* ไม่มี Bullet Point */
+    padding: 0;
+    margin: 0;
+    text-align: center; /* จัดกลางข้อความ */
+}
+
+.fullscreen-menu ul li {
+    margin: 35px 0; /* ระยะห่างระหว่างรายการเมนู */
+}
+
+.fullscreen-menu ul li a {
+    color: var(--white-color); /* สีข้อความเมนู */
+    font-size: 2.8em; /* ขนาดข้อความเมนู */
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* เพิ่ม transition */
+}
+
+.fullscreen-menu ul li a:hover {
+    color: var(--yellow-color); /* เปลี่ยนเป็นสีเหลืองเมื่อ hover */
+    text-shadow: 0 0 15px var(--yellow-color), 0 0 30px var(--yellow-color); /* เพิ่มเงาเรืองแสง */
+}
+
+.close-menu-btn {
+    position: absolute; /* ตำแหน่งสัมบูรณ์ */
+    top: 25px;
+    left: 25px;
+    background: none;
+    border: none;
+    font-size: 3.5em; /* ขนาดปุ่มปิดเมนู */
+    color: var(--white-color); /* สีปุ่มปิดเมนู */
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg); /* หมุน 90 องศาเมื่อ hover */
+    color: var(--yellow-color); /* เปลี่ยนเป็นสีเหลืองเมื่อ hover */
+}
+
+/* --- Sections: สไตล์สำหรับแต่ละส่วนของเว็บไซต์ --- */
+section {
+    padding: 100px 5%; /* Padding บน-ล่าง และซ้าย-ขวา */
+    min-height: 100vh; /* ทำให้แต่ละ section เต็มหน้าจออย่างน้อย 100% ของความสูง Viewport */
+    display: flex; /* ใช้ Flexbox ในการจัดวางเนื้อหา */
+    flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+    justify-content: center; /* จัดกลางแนวตั้ง */
+    align-items: center; /* จัดกลางแนวนอน */
+    text-align: center; /* จัดกลางข้อความ */
+    position: relative; /* สำหรับตำแหน่งของลวดลายสายฟ้า */
+    overflow: hidden; /* ป้องกันลวดลายสายฟ้าเลื่อนออกนอก section */
+}
+
+/* Hero Section: ส่วนแนะนำตัว */
+.hero-section {
+    background-color: var(--yellow-color); /* พื้นหลังสีเหลือง (50%) */
+    color: var(--white-color); /* สีข้อความ */
+    padding-top: 120px; /* เว้นที่สำหรับเมนูไอคอนด้านบน */
+    position: relative;
+    /* เพิ่มลวดลายสายฟ้าแบบ Subtle ที่พื้นหลัง */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: repeat; /* ทำซ้ำลวดลาย */
+    background-size: 150px; /* ขนาดของลวดลาย */
+    opacity: 0.9; /* ความโปร่งแสงของลวดลาย */ 
+    animation: lightningBackground 30s linear infinite; /* Animation เคลื่อนไหวช้าๆ */
+}
+/* Keyframes สำหรับการเคลื่อนไหวพื้นหลัง */
+@keyframes lightningBackground {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+.hero-content {
+    max-width: 900px;
+    opacity: 1;
+    z-index: 10; /* ให้เนื้อหาอยู่บนลวดลายพื้นหลัง */
+}
+
+.profile-pic {
+    border-radius: 50%; /* ทำให้รูปเป็นวงกลม */
+    width: 220px; /* ขนาดรูป */
+    height: 220px;
+    object-fit: cover; /* ครอบคลุมพื้นที่รูป */
+    border: 7px solid var(--black-color); /* กรอบรูปสีดำ */
+    margin-bottom: 25px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* เงารูป */
+    z-index:10;
+}
+
+.hero-section h1 {
+    font-size: 2.5em; /* ขนาดชื่อ */
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-shadow: 3px 3px 7px rgba(0,0,0,0.3); /* เงาข้อความ */
+}
+
+.hero-section p {
+    font-size: 4.5em; /* ขนาดข้อความตำแหน่ง */
+    /*font-weight: 400;*/
+    margin-bottom: 15px;
+}
+
+.hero-tagline {
+    font-size: 4.5em; /* ขนาด Tagline ให้ดูเด่นขึ้น */
+    /*font-style: italic;
+    font-weight: 500;*/
+    color: #ffffff;
+}
+
+/* About Section: ส่วนเกี่ยวกับฉัน */
+.about-section {
+    background-color: var(--white-color); /* พื้นหลังสีขาว (35%) */
+    padding-bottom: 120px; /* เผื่อที่สำหรับเส้นแบ่ง */
+}
+
+.about-section h2 {
+    font-size: 3.5em;
+    margin-bottom: 40px;
+    color: var(--black-color);
+}
+
+.about-section p {
+    max-width: 900px;
+    font-size: 1.2em; /* ขนาดตัวอักษร */
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #444;
+}
+.about-section p strong {
+    color: var(--black-color);
+}
+
+/* Lightning Divider: เส้นแบ่งที่มีลวดลายสายฟ้า */
+.lightning-divider {
+    width: 150px; /* ความกว้าง */
+    height: 6px; /* ความหนา */
+    background-color: var(--black-color); /* สีเส้น */
+    margin: 60px auto; /* ระยะห่างและจัดกลาง */
+    position: relative;
+    overflow: visible; /* ให้สายฟ้าออกมานอกกรอบ */
+    animation: strikeEffect 2s infinite ease-in-out; /* Animation สายฟ้า */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* เงา */
+    border-radius: 3px;
+}
+.lightning-divider::before,
+.lightning-divider::after {
+    content: '';
+    position: absolute;
+    background-color: var(--black-color);
+    transform-origin: top left; /* กำหนดจุดหมุน */
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.lightning-divider::before {
+    width: 80px;
+    height: 6px;
+    top: -15px;
+    left: 10px;
+    transform: rotate(-45deg);
+}
+
+.lightning-divider::after {
+    width: 80px;
+    height: 6px;
+    bottom: -15px;
+    right: 10px;
+    transform: rotate(45deg);
+}
+
+/* Keyframes สำหรับ Animation สายฟ้า */
+@keyframes strikeEffect {
+    0%, 100% { transform: scaleX(0); opacity: 0; }
+    20% { transform: scaleX(0.5); opacity: 0.5; }
+    50% { transform: scaleX(1); opacity: 1; }
+    80% { transform: scaleX(0.5); opacity: 0.5; }
+}
+
+
+/* Works Section: ส่วนผลงานของฉัน */
+.works-section {
+    background-color: var(--white-color);
+    position: relative;
+    z-index: 1; /* เพื่อให้ลวดลายข้างหลังไม่บังเนื้อหา */
+    border-top: 5px solid var(--black-color); /* เพิ่มเส้นแบ่ง */
+    border-bottom: 5px solid var(--black-color); /* เพิ่มเส้นแบ่ง */
+    padding: 120px 5%;
+}
+
+/* ลวดลายสายฟ้าสำหรับพื้นหลังส่วน Works */
+.works-section::before, .works-section::after {
+    content: '';
+    position: absolute;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.07; /* ความโปร่งแสง */
+    z-index: -1; /* อยู่ข้างหลังเนื้อหา */
+}
+
+.works-section::before {
+    width: 250px;
+    height: 250px;
+    top: 30px;
+    left: -80px;
+    transform: rotate(-45deg);
+}
+
+.works-section::after {
+    width: 200px;
+    height: 200px;
+    bottom: 30px;
+    right: -80px;
+    transform: rotate(70deg);
+}
+
+.works-section h2 {
+    font-size: 3.5em;
+    margin-bottom: 60px;
+}
+
+.work-gallery {
+    display: grid; /* ใช้ Grid ในการจัดวาง */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive Grid */
+    gap: 50px; /* ระยะห่างระหว่างงาน */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.work-item {
+    background-color: var(--white-color);
+    border: 4px solid var(--black-color); /* กรอบสีดำ */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* เงา */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* เพิ่ม transition */
+    position: relative;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.work-item:hover {
+    transform: translateY(-15px); /* เลื่อนขึ้นเมื่อ hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-color: var(--yellow-color); /* เปลี่ยนกรอบเป็นสีเหลืองเมื่อ hover */
+}
+
+.work-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 3px solid var(--black-color);
+}
+
+.work-item h3 {
+    margin: 25px 0 12px;
+    font-size: 2em;
+    color: var(--black-color);
+}
+
+.work-item p {
+    padding: 0 25px;
+    font-size: 1.05em;
+    color: #555;
+    flex-grow: 1; /* ทำให้ p ยืดหยุ่นเต็มพื้นที่ */
+}
+
+.section-note {
+    margin-top: 60px;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #666;
+}
+
+/* Services Section: ส่วนบริการ */
+.services-section {
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+    border-top: 5px solid var(--black-color);
+    border-bottom: 5px solid var(--black-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ลวดลายสายฟ้าสำหรับพื้นหลังส่วน Services */
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20%;
+    width: 150%;
+    height: 150%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: 400px;
+    opacity: 0.1;
+    transform: rotate(20deg) translateY(-50%);
+    animation: pulseLightning 5s infinite ease-in-out alternate;
+}
+
+/* Keyframes สำหรับ Animation ลวดลายสายฟ้า */
+@keyframes pulseLightning {
+    0% { transform: rotate(20deg) translateY(-50%) scale(0.95); opacity: 0.08; }
+    100% { transform: rotate(20deg) translateY(-50%) scale(1.05); opacity: 0.12; }
+}
+
+.services-section h2 {
+    font-size: 3.5em;
+    margin-bottom: 50px;
+    color: var(--black-color);
+    z-index: 1;
+}
+
+.services-section ul {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    width: 100%;
+    z-index: 1;
+}
+
+.services-section ul li {
+    background-color: var(--black-color);
+    color: var(--white-color);
+    padding: 25px 35px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 2px solid var(--black-color);
+}
+
+.services-section ul li:hover {
+    background-color: var(--white-color);
+    color: var(--black-color);
+    transform: translateX(15px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    border-color: var(--yellow-color);
+}
+
+.services-section ul li .fas {
+    color: var(--yellow-color);
+    font-size: 1.8em;
+    filter: drop-shadow(0 0 5px var(--yellow-color));
+}
+
+/* Contact Section: ส่วนติดต่อฉัน */
+.contact-section {
+    background-color: var(--black-color); /* พื้นหลังสีดำ (15%) */
+    color: var(--white-color);
+    padding-bottom: 50px; /* สำหรับ footer-note */
+    position: relative;
+    overflow: hidden;
+}
+
+/* เพิ่มลวดลายสายฟ้าแบบ Subtle */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD700" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.08; /* สายฟ้าสีเหลืองแบบ Subtle */
+    transform: rotate(-25deg);
+    z-index: 0;
+}
+.contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: -10%;
+    width: 250px;
+    height: 250px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD700" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.06;
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+.contact-section h2 {
+    font-size: 3.5em;
+    margin-bottom: 40px;
+    color: var(--white-color);
+    z-index: 1;
+}
+
+.contact-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    max-width: 800px;
+    color: var(--white-color);
+    z-index: 1;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1.3em;
+    z-index: 1;
+}
+
+.contact-info p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--white-color);
+    transition: color 0.3s ease;
+}
+
+.contact-info p:hover {
+    color: var(--yellow-color);
+}
+
+.contact-info p a {
+    color: var(--white-color);
+    transition: color 0.3s ease;
+}
+
+.contact-info p a:hover {
+    color: var(--yellow-color);
+    text-decoration: underline;
+}
+
+.contact-info .fas, .contact-info .fab {
+    color: var(--yellow-color);
+    font-size: 1.6em;
+    filter: drop-shadow(0 0 5px var(--yellow-color));
+}
+
+.footer-note {
+    margin-top: 60px;
+    font-size: 0.9em;
+    color: #aaa;
+    z-index: 1;
+}
+
+/* Responsive Design: การปรับแต่งสำหรับหน้าจอขนาดต่างๆ */
+@media (max-width: 992px) {
+    .hero-section h1 {
+        font-size: 4em;
+    }
+    .hero-section p {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 3em;
+    }
+    .work-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .services-section ul li {
+        font-size: 1.2em;
+        padding: 20px 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 3.5em;
+    }
+    .hero-section p {
+        font-size: 1.3em;
+    }
+    .hero-tagline {
+        font-size: 1.1em !important;
+    }
+    h2 {
+        font-size: 2.8em;
+    }
+    .fullscreen-menu ul li a {
+        font-size: 2.2em;
+    }
+    .close-menu-btn {
+        font-size: 3em;
+    }
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+    }
+    .popup-content {
+        padding: 25px;
+        max-width: 500px;
+    }
+    .popup-content h2 {
+        font-size: 2em;
+    }
+    .popup-content .questions p {
+        font-size: 1.05em;
+    }
+    .close-btn {
+        font-size: 2em;
+    }
+    .work-gallery {
+        grid-template-columns: 1fr; /* แถวเดียวสำหรับหน้าจอเล็ก */
+        gap: 30px;
+    }
+    .about-section p, .works-section p, .contact-section p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 80px 3%;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .hero-tagline {
+        font-size: 0.9em !important;
+    }
+    h2 {
+        font-size: 2.2em;
+    }
+    .fullscreen-menu ul li a {
+        font-size: 1.8em;
+    }
+    .close-menu-btn {
+        font-size: 2.5em;
+    }
+    .menu-icon {
+        font-size: 2em;
+        top: 15px;
+        left: 15px;
+    }
+    .close-btn {
+        font-size: 1.8em;
+        top: 10px;
+        right: 10px;
+    }
+    .popup-content {
+        padding: 15px;
+    }
+    .popup-content h2 {
+        font-size: 1.6em;
+    }
+    .popup-content .questions p {
+        font-size: 0.95em;
+        margin-bottom: 10px;
+    }
+    .profile-pic {
+        width: 140px;
+        height: 140px;
+        border-width: 4px;
+    }
+    .about-section p, .works-section p, .contact-section p {
+        font-size: 1em;
+    }
+    .services-section ul li {
+        font-size: 1em;
+        padding: 15px 20px;
+        gap: 10px;
+    }
+    .services-section ul li .fas {
+        font-size: 1.5em;
+    }
+    .contact-info p {
+        font-size: 1.1em;
+    }
+}
