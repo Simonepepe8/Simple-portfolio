@@ -220,14 +220,14 @@ section {
 /* Hero Section: ส่วนแนะนำตัว */
 .hero-section {
     background-color: var(--yellow-color); /* พื้นหลังสีเหลือง (50%) */
-    color: var(--white-color); /* สีข้อความ */
+    color: var(--black-color); /* สีข้อความ */
     padding-top: 120px; /* เว้นที่สำหรับเมนูไอคอนด้านบน */
     position: relative;
     /* เพิ่มลวดลายสายฟ้าแบบ Subtle ที่พื้นหลัง */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231a1a1a" d="M50 0 L60 40 L100 40 L40 100 L50 60 L0 60 Z"/></svg>');
     background-repeat: repeat; /* ทำซ้ำลวดลาย */
     background-size: 150px; /* ขนาดของลวดลาย */
-    /*opacity: 0.1; /* ความโปร่งแสงของลวดลาย */ 
+    opacity: 0.001; /* ความโปร่งแสงของลวดลาย */ 
     animation: lightningBackground 30s linear infinite; /* Animation เคลื่อนไหวช้าๆ */
 }
 /* Keyframes สำหรับการเคลื่อนไหวพื้นหลัง */
