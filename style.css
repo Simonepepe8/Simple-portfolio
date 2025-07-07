@@ -220,7 +220,7 @@ section {
 /* Hero Section: ส่วนแนะนำตัว */
 .hero-section {
     background-color: var(--yellow-color); /* พื้นหลังสีเหลือง (50%) */
-    color: var(--black-color); /* สีข้อความ */
+    color: var(--white-color); /* สีข้อความ */
     padding-top: 120px; /* เว้นที่สำหรับเมนูไอคอนด้านบน */
     position: relative;
     /* เพิ่มลวดลายสายฟ้าแบบ Subtle ที่พื้นหลัง */
