@@ -261,15 +261,15 @@ section {
 }
 
 .hero-section p {
-    font-size: 1.7em; /* ขนาดข้อความตำแหน่ง */
-    font-weight: 400;
+    font-size: 4.5em; /* ขนาดข้อความตำแหน่ง */
+    /*font-weight: 400;*/
     margin-bottom: 15px;
 }
 
 .hero-tagline {
-    font-size: 1.3em !important; /* ขนาด Tagline ให้ดูเด่นขึ้น */
-    font-style: italic;
-    font-weight: 500;
+    font-size: 4.5em; /* ขนาด Tagline ให้ดูเด่นขึ้น */
+    /*font-style: italic;
+    font-weight: 500;*/
     color: #ffffff;
 }
 
