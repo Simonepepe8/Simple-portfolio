@@ -238,7 +238,7 @@ section {
 
 .hero-content {
     max-width: 900px;
-    z-index: 10; /* ให้เนื้อหาอยู่บนลวดลายพื้นหลัง */
+    z-index: -1; /* ให้เนื้อหาอยู่บนลวดลายพื้นหลัง */
 }
 
 .profile-pic {
